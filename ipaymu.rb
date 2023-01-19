@@ -7,6 +7,8 @@ va = "1179000899"
 apiKey = "QbGcoO0Qds9sQFDmY0MWg1Tq.xtuh1"
 
 uri = URI.parse("https://sandbox.ipaymu.com/api/v2/payment")
+# uri = URI.parse("https://my.ipaymu.com/api/v2/payment")
+
 request = Net::HTTP::Post.new(uri)
 
 
@@ -46,11 +48,8 @@ bodyHash   = bodyHash.downcase
 
 stringToSign = "POST:" + va + ":" + bodyHash + ":" + apiKey
 
-key = 'key'
-data = 'The quick brown fox jumps over the lazy dog'
 digest = OpenSSL::Digest.new('sha256')
 
-#=> "\xF7\xBC\x83\xF40S\x84$\xB12\x98\xE6\xAAo\xB1C\xEFMY\xA1IF\x17Y\x97G\x9D\xBC-\x1A<\xD8"
 
 signature = OpenSSL::HMAC.hexdigest(digest, apiKey, stringToSign)
 
